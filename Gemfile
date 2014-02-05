@@ -14,7 +14,9 @@ end
 group :test do
   gem 'selenium-webdriver'
   gem 'capybara'
-  gem 'spork'
+  gem 'spork', '1.0.0.rc4'
+  gem 'spork-rails', '4.0.0'
+  
 end
 
 # Gems used only for assets and not required
