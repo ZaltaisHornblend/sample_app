@@ -7,6 +7,9 @@
     sample application.
   </h2>
 
+<%= video_player({:file => "/videos/Aperture_Science_vend_des_bottes.mp4", :skin => "stormtrooper", :image => "/videos/Aperture_science_intro.png"},
+		{:width => 640, :height => 480, :id => "intro", :playlist => true}) %>
+
   <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
 </div>
 

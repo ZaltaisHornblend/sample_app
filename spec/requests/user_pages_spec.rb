@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 require 'spec_helper'
 
 describe "User pages" do
@@ -7,8 +9,8 @@ describe "User pages" do
   describe "signup page" do
     before { visit signup_path }
 
-    #it { should have_content('Sign up') }
-    #it { should have_title(full_title('Sign up')) }
+    it { should have_content('Sign up') }
+    it { should have_title(full_title('Sign up')) }
     
     let(:submit) { "Create my account" }
 
@@ -20,14 +22,23 @@ describe "User pages" do
 
     describe "with valid information" do
       before do
-        #fill_in "Name",         with: "Trinity"
-        #fill_in "Email",        with: "trinity@sion.com"
-        #fill_in "Password",     with: "matrix"
-        #fill_in "Confirmation", with: "matrix"
         fill_in "Name",         with: "Example User"
         fill_in "Email",        with: "user@example.com"
         fill_in "Password",     with: "foobar"
         fill_in "Confirmation", with: "foobar"
+        select "1980", 			from: "user[birthday(1i)]"
+        select "April", 		from: "user[birthday(2i)]"
+        select "24", 			from: "user[birthday(3i)]"
+        fill_in "Weight",		with: 90.5
+        fill_in "Ideal Weight",	with: 78
+        
+        #Sports
+        choose "Oui, je suis sportif"
+        choose "Non, je ne suis pas sportif" 
+        
+        #Wants to do sport
+        choose "Oui, j'ai toujours voulu ressember à un athlète"
+        choose "Non, je préfère les jeux vidéo!"   
       end
 
       it "should create a user" do

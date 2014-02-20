@@ -17,7 +17,34 @@
 
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation %>
+      
+      <%= f.label :birthday, "Date of birth" %> 
+      <%= f.date_select :birthday, :order => [:day, :month, :year], :start_year => Time.now.year - 100, 
+						:end_year => Time.now.year - 5, :include_blank => true, :default => nil %> 
+ 
+ 	  <%= f.label :user_weight, "Weight" %>
+	  <%= f.number_field :user_weight %> 
+	  
+	  <%= f.label :ideal_weight, "Ideal Weight" %>
+	  <%= f.number_field :ideal_weight %> 
+	 
+	  <%= f.label :do_sport, "Es-tu sportif?" %>
+	  <%= f.label :do_sport, "Oui, je suis sportif", :value => "true" %> 
+	  <%= f.radio_button :do_sport, true %>
+	  <%= f.label :do_sport, "Non, je ne suis pas sportif", :value => "false" %> 
+	  <%= f.radio_button :do_sport, false %>
+      <br />
+      <br />
+      
+      <%= f.label :want_do_sport, "Aimerais tu te mettre au sport?" %>
+      <%= f.label :want_do_sport, "Oui, j'ai toujours voulu ressember à un athlète", :value => "true" %>
+	  <%= f.radio_button :want_do_sport, true %>
+	  <%= f.label :want_do_sport, "Non, je préfère les jeux vidéo!", :value => "false" %>
+	  <%= f.radio_button :want_do_sport, false %>
+      <br />
+      <br /> 
 
+		
       <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>

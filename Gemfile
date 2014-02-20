@@ -6,6 +6,7 @@ gem 'bootstrap-sass', '2.3.2.0' #'3.1.0.1'
 gem 'bcrypt-ruby'
 gem 'i18n', '0.6.9'
 gem 'strong_parameters'
+gem 'jw_player_helper'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

@@ -2,11 +2,13 @@
 #
 # Table name: users
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  email      :string(255)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id              :integer          not null, primary key
+#  name            :string(255)
+#  email           :string(255)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  password_digest :string(255)
+#  birthday        :date
 #
 
 require 'spec_helper'
@@ -15,7 +17,9 @@ describe User do
 
   before do
     @user = User.new(name: "Example User", email: "user@example.com",
-					 password: "foobar", password_confirmation: "foobar")
+					 password: "foobar", password_confirmation: "foobar", birthday: "12/11/2010", 
+					 user_weight: 94, ideal_weight: 85,
+					 do_sport: true, want_do_sport: true)
   end
 
   subject { @user }
@@ -25,9 +29,17 @@ describe User do
   it { should respond_to(:password_digest) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
+  it { should respond_to(:birthday) }					#ajout pour la date de naissance
+  it { should respond_to(:user_weight) }				#ajout poids
+  it { should respond_to(:ideal_weight) }				#ajout poids ideal
+  it { should respond_to(:do_sport) }					#ajout "Je fais du sport"
+  it { should respond_to(:want_do_sport) }				#ajour "Je veux en faire ?"
   it { should respond_to(:authenticate) }
   
   it { should be_valid }
+
+
+# ================ name ================ #
 
   describe "when name is not present" do
     before { @user.name = " " }
@@ -38,6 +50,8 @@ describe User do
     before { @user.name = "a" * 51 }
     it { should_not be_valid }
   end
+  
+# ================ email ================ #
   
   describe "when email is not present" do
     before { @user.email = " " }
@@ -85,6 +99,8 @@ describe User do
     it { should_not be_valid }
   end
   
+# ================ password ================ #
+
   describe "when password is not present" do
     before do
       @user = User.new(name: "Example User", email: "user@example.com",
@@ -119,4 +135,64 @@ describe User do
     end
   end
   
+  # ================ birthday ================ #
+  
+  describe "when date of birth is not present" do
+    before { @user.birthday = nil }
+    it { should_not be_valid }
+  end
+  
+  # ================ weight ================ #
+
+=begin  
+
+# mise en commentaire après les avoir tester car conflit lorsqu'il va tester le greater_than. Les tests vont comparer un float avec un nil
+
+  describe "when user_weight is not present" do
+    before { @user.user_weight = nil }		# trouver une solution pour mettre nil a la place de 0
+    it { should_not be_valid }
+  end
+  
+  describe "when ideal_weight is not present" do	
+    before { @user.ideal_weight = nil }		# trouver une solution pour mettre nil a la place de 0
+    it { should_not be_valid }
+  end
+=end
+
+
+   #weight must be more greater than ideal weight
+  
+  describe "when weight is less than ideal weight" do
+     before{ @user_false = User.new(name: "Example User", email: "user@example.com",
+                     password: "foobar", password_confirmation: "foobar",
+                     birthday: "1980-01-01",
+                     user_weight: 60, ideal_weight: 70,
+                     do_sport: false, want_do_sport: true)
+            }         
+    it { @user.should be_valid } 
+    it { @user_false.should_not be_valid }
+  end
+
+  #ideal weight must be more greater than 0
+
+  describe "when weight is less than ideal weight" do
+    before{ @user_false = User.new(name: "Example User", email: "user@example.com",
+                     password: "foobar", password_confirmation: "foobar",
+                     birthday: "1980-01-01",
+                     user_weight: 60, ideal_weight: 0,
+                     do_sport: false, want_do_sport: true)
+            }         
+    it { @user.should be_valid } 
+    it { @user_false.should_not be_valid }
+  end
+
+  
+  # ================ sport ================ #
+  
+  describe "when do_sport is not present" do
+    before { @user.do_sport = nil }
+    it { should_not be_valid }
+  end
+  
+
 end
