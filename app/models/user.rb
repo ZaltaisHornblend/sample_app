@@ -13,6 +13,7 @@
 
 class User < ActiveRecord::Base
   before_save { email.downcase! }
+  before_create :create_remember_token
   attr_accessible :email, :name, :password, :password_confirmation, :birthday, :user_weight, :ideal_weight, 
 					:do_sport, :want_do_sport, :user_cv, :user_cv_file_name, :user_cv_content_type, :user_cv_file_size,
 					:user_height
@@ -35,5 +36,19 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :user_cv, :content_type => ['application/pdf']
   
   validates :user_height, presence: true, numericality: { only_integer: true }
+  
+  def User.new_remember_token
+    SecureRandom.urlsafe_base64
+  end
+
+  def User.encrypt(token)
+    Digest::SHA1.hexdigest(token.to_s)
+  end
+
+  private
+
+    def create_remember_token
+      self.remember_token = User.encrypt(User.new_remember_token)
+    end
 
 end
