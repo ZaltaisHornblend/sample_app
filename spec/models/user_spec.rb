@@ -19,7 +19,9 @@ describe User do
     @user = User.new(name: "Example User", email: "user@example.com",
 					 password: "foobar", password_confirmation: "foobar", birthday: "12/11/2010", 
 					 user_weight: 94, ideal_weight: 85,
-					 do_sport: true, want_do_sport: true)
+					 do_sport: true, want_do_sport: true,
+					 #user_cv_file_name: "testCV.pdf", user_cv_content_type: "application/pdf", user_cv_file_size: 14000, 
+					 user_height: 190)
   end
 
   subject { @user }
@@ -33,7 +35,14 @@ describe User do
   it { should respond_to(:user_weight) }				#ajout poids
   it { should respond_to(:ideal_weight) }				#ajout poids ideal
   it { should respond_to(:do_sport) }					#ajout "Je fais du sport"
-  it { should respond_to(:want_do_sport) }				#ajour "Je veux en faire ?"
+  it { should respond_to(:want_do_sport) }				#ajout "Je veux en faire ?"
+  #it { should respond_to(:user_cv) }					#ajout "CV utilisateur"
+  #it { should respond_to(:user_cv_file_name) }
+  #it { should respond_to(:user_cv_content_type) }
+  #it { should respond_to(:user_cv_file_size) }
+  it { should respond_to(:user_height) }				#ajout de la taille pour calculer l'IMC
+  
+  
   it { should respond_to(:authenticate) }
   
   it { should be_valid }
@@ -194,5 +203,12 @@ describe User do
     it { should_not be_valid }
   end
   
-
+  
+  # ================ height ================ #
+  
+  describe "when height is not present" do
+    before { @user.user_height = nil }
+    it { should_not be_valid }
+  end
+  
 end

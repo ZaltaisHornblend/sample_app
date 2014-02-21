@@ -22,6 +22,8 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation, :birthday, :user_weight, :ideal_weight, :do_sport, :want_do_sport)
+                                   :password_confirmation, :birthday, :user_weight, :ideal_weight, :do_sport, :want_do_sport, 
+                                   :user_cv_file_name, :user_cv_content_type, :user_cv_file_size,
+                                   :user_height)
     end
 end

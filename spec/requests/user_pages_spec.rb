@@ -38,7 +38,13 @@ describe "User pages" do
         
         #Wants to do sport
         choose "Oui, j'ai toujours voulu ressember à un athlète"
-        choose "Non, je préfère les jeux vidéo!"   
+        choose "Non, je préfère les jeux vidéo!"
+        
+        #fill_in "Pour le dépôt d'un CV en pdf",     with: "testCV.pdf"
+        #fill_in "Confirmation", with: "foobar"
+        
+        fill_in "Taille (en cm)", with: 184
+           
       end
 
       it "should create a user" do

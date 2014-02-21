@@ -11,19 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140213101132) do
+ActiveRecord::Schema.define(:version => 20140221122441) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.string   "password_digest"
     t.date     "birthday"
     t.float    "user_weight"
     t.float    "ideal_weight"
     t.boolean  "do_sport"
     t.boolean  "want_do_sport"
+    t.string   "user_cv_file_name"
+    t.string   "user_cv_content_type"
+    t.integer  "user_cv_file_size"
+    t.integer  "user_height"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

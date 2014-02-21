@@ -28,6 +28,10 @@
 	  <%= f.label :ideal_weight, "Ideal Weight" %>
 	  <%= f.number_field :ideal_weight %> 
 	 
+	  <%= f.label :user_height, "Taille (en cm)" %>
+	  <%= f.number_field :user_height %>
+	 
+	 
 	  <%= f.label :do_sport, "Es-tu sportif?" %>
 	  <%= f.label :do_sport, "Oui, je suis sportif", :value => "true" %> 
 	  <%= f.radio_button :do_sport, true %>
@@ -43,8 +47,13 @@
 	  <%= f.radio_button :want_do_sport, false %>
       <br />
       <br /> 
+      
+	  <%= f.label :user_cv, "Pour le dépôt d'un CV en pdf" %><br>
+	  <%= f.file_field :user_cv %>
 
-		
+	  <br />
+      <br /> 
+	  
       <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
