@@ -1,4 +1,5 @@
 <% if signed_in? %>
+<div id="themeQuidditchConnecte">
   <div class="row">
     <aside class="span4">
       <section>
@@ -13,20 +14,22 @@
       <%= render 'shared/feed' %>
     </div>
   </div>
+</div>
 <% else %>
 	<div class="center hero-unit">
-	  <h1>Welcome to the Sample App</h1>
-
+	  <h1>Nationale Quidditch Association</h1>
+      <br />
 	  <h2>
-		This is the home page for the
-		<a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-		sample application.
+		Bienvenus visiteurs ! Tu connais le Quidditch ? Bien sur, sinon tu ne serais pas sur ce site !<br />
+		La NQA t'accueille volontier dans ses rangs. Fait tes armes avec Harry Potter dans le Championnat de Poudlard ou passe avec les pros
+		et participe a la coupe du monde ! <br />A vos balais ! <br />
+		Si vous n'en avez pas encore visitez notre boutique : <%= link_to "Store", store_path %>
 	  </h2>
 
-	<%= video_player({:file => "/videos/Aperture_Science_vend_des_bottes.mp4", :skin => "stormtrooper", :image => "/videos/Aperture_science_intro.png"},
+	<%= video_player({:file => "/videos/IntroCoupe-de-Monde-de-Quidditch.mp4", :skin => "stormtrooper", :image => "/videos/Quidditch_logo.jpg"},
 			{:width => 640, :height => 480, :id => "intro", :playlist => true}) %>
-
-	  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+    <br />
+	  <%= link_to "S'inscrire maintenant !", signup_path, class: "btn btn-large btn-primary" %>
 	</div>
 
 	<%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>

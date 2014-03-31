@@ -1,3 +1,4 @@
+#encoding: utf-8
 require 'spec_helper'
 
 describe "Static pages" do
@@ -9,13 +10,13 @@ describe "Static pages" do
     it { should have_title(full_title(page_title)) }
   end
 
-  describe "Home page" do
+  describe "Page d'accueil" do
     before { visit root_path }
-    let(:heading)    { 'Sample App' }
+    let(:heading)    { 'Nationale Quidditch Association' }
     let(:page_title) { '' }
 
     it_should_behave_like "all static pages"
-    it { should_not have_title('| Home') }
+    it { should_not have_title('| Accueil') }
     
     describe "for signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
@@ -37,8 +38,8 @@ describe "Static pages" do
   describe "Help page" do
     before { visit help_path }
 
-    let(:heading)    { 'Help' }
-    let(:page_title) { 'Help' }
+    let(:heading)    { 'Aide' }
+    let(:page_title) { 'Aide' }
 
     it_should_behave_like "all static pages"
   end
@@ -46,12 +47,21 @@ describe "Static pages" do
   describe "About page" do
     before { visit about_path }
 
-    let(:heading)    { 'About' }
-    let(:page_title) { 'About Us' }
+    let(:heading)    { 'A Propos' }
+    let(:page_title) { 'A Propos' }
     
     it_should_behave_like "all static pages"
   end
 
+  describe "Store page" do
+    before { visit store_path }
+    
+    let(:heading)    { 'Store' }
+    let(:page_title) { 'Store' }
+    
+    it_should_behave_like "all static pages"
+  end
+  
   describe "Contact page" do
     before { visit contact_path }
     
@@ -63,16 +73,18 @@ describe "Static pages" do
   
   it "should have the right links on the layout" do
     visit root_path
-    click_link "About"
-    expect(page).to have_title(full_title('About Us'))
-    click_link "Help"
-    expect(page).to have_title(full_title('Help'))
+    click_link "A Propos"
+    expect(page).to have_title(full_title('A Propos'))
+    click_link "Store"
+    expect(page).to have_title(full_title('Store'))
+    click_link "Aide"
+    expect(page).to have_title(full_title('Aide'))
     click_link "Contact"
     expect(page).to have_title(full_title('Contact'))
-    click_link "Home"
-    click_link "Sign up now!"
-    expect(page).to have_title(full_title('Sign up'))
-    click_link "sample app"
+    click_link "Accueil"
+    click_link "S'inscrire maintenant !"
+    expect(page).to have_title(full_title("Inscription"))
+    click_link "IQA"
     expect(page).to have_title(full_title(''))
   end
 end

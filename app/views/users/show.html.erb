@@ -1,4 +1,5 @@
 <% provide(:title, @user.name) %>
+<div id="themeQuidditchConnecte">
 <div class="row">
   <aside class="span4">
     <section>
@@ -9,6 +10,18 @@
     </section>
   </aside>
   <div class="span8">
+  <p> <strong>Nom :</strong> <%= @user.name %> 
+  <br /> <strong>Age :</strong> <%= @user.AGE %> ans
+  <br /> <strong>Taille :</strong> <%= @user.user_height %> 
+  <br /> <strong>Sportif :</strong> <%= @user.do_sport %> 
+  <br /> <strong>Poids :</strong> <%= @user.user_weight %> Kg
+  <br /> <strong>Poids idéal :</strong> <%= @user.ideal_weight %> Kg
+  <br /> <% if @user.user_cv.path != nil %> <strong>CV : </strong> <%= link_to "Consulter", @user.user_cv.url %>
+  <br /> <% end %> <br /> <strong>IMC : </strong><%= @user.IMC %>
+  <br /> <strong>IMC (avec poids idéal) : </strong><%= @user.IMC_ideal %> </p> 
+
+  <br />
+  
     <% if @user.microposts.any? %>
       <h3>Microposts (<%= @user.microposts.count %>)</h3>
       <ol class="microposts">
@@ -17,4 +30,5 @@
       <%= will_paginate @microposts %>
     <% end %>
   </div>
+</div>
 </div>

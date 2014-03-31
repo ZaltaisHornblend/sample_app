@@ -1,60 +1,85 @@
-<% provide(:title, 'Sign up') %>
-<h1>Sign up</h1>
+<% provide(:title, 'Inscription') %>
+<div id="themeQuidditchConnecte">
+<h1>Inscription</h1>
 
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(@user) do |f| %>
-	  <%= render 'shared/error_messages', object: f.object %>
+<%= render 'shared/error_messages', object: f.object %>
 
-      <%= f.label :name %>
+      <%= f.label :name, "Nom" %>
       <%= f.text_field :name %>
 
-      <%= f.label :email %>
+      <%= f.label :email, "email" %>
       <%= f.text_field :email %>
 
-      <%= f.label :password %>
+      <%= f.label :password, "Mot de passe" %>
       <%= f.password_field :password %>
 
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation %>
       
-      <%= f.label :birthday, "Date of birth" %> 
-      <%= f.date_select :birthday, :order => [:day, :month, :year], :start_year => Time.now.year - 100, 
-						:end_year => Time.now.year - 5, :include_blank => true, :default => nil %> 
+      <%= f.label :birthday, "Date de naissance" %>
+      <%= f.date_select :birthday, :order => [:day, :month, :year], :start_year => Time.now.year - 100,
+:end_year => Time.now.year - 5, :include_blank => true, :default => nil %>
  
- 	  <%= f.label :user_weight, "Weight" %>
-	  <%= f.number_field :user_weight %> 
-	  
-	  <%= f.label :ideal_weight, "Ideal Weight" %>
-	  <%= f.number_field :ideal_weight %> 
-	 
-	  <%= f.label :user_height, "Taille (en cm)" %>
-	  <%= f.number_field :user_height %>
-	 
-	 
-	  <%= f.label :do_sport, "Es-tu sportif?" %>
-	  <%= f.label :do_sport, "Oui, je suis sportif", :value => "true" %> 
-	  <%= f.radio_button :do_sport, true %>
-	  <%= f.label :do_sport, "Non, je ne suis pas sportif", :value => "false" %> 
-	  <%= f.radio_button :do_sport, false %>
+  <%= f.label :user_weight, "Poids" %>
+<%= f.number_field :user_weight %>
+
+<%= f.label :ideal_weight, "Poids idéal" %>
+<%= f.number_field :ideal_weight %>
+
+<%= f.label :user_height, "Taille (en cm)" %>
+<%= f.number_field :user_height %>
+
+
+<%= f.label :do_sport, "Es-tu sportif?" %>
+<%= f.label :do_sport, "Oui, je suis sportif", :value => "true" %>
+<%= f.radio_button :do_sport, true %>
+<%= f.label :do_sport, "Non, je ne suis pas sportif", :value => "false" %>
+<%= f.radio_button :do_sport, false %>
       <br />
       <br />
       
+      
+<div id="want_do_sport">
       <%= f.label :want_do_sport, "Aimerais tu te mettre au sport?" %>
       <%= f.label :want_do_sport, "Oui, j'ai toujours voulu ressember à un athlète", :value => "true" %>
-	  <%= f.radio_button :want_do_sport, true %>
-	  <%= f.label :want_do_sport, "Non, je préfère les jeux vidéo!", :value => "false" %>
-	  <%= f.radio_button :want_do_sport, false %>
-      <br />
-      <br /> 
-      
-	  <%= f.label :user_cv, "Pour le dépôt d'un CV en pdf" %><br>
-	  <%= f.file_field :user_cv %>
+<%= f.radio_button :want_do_sport, true %>
+<%= f.label :want_do_sport, "Non, je préfère les jeux vidéo!", :value => "false" %>
+<%= f.radio_button :want_do_sport, false %>
+</div>
 
-	  <br />
-      <br /> 
-	  
+      <br />
+      <br />
+      
+<%= f.label :user_cv, "Pour le dépôt d'un CV en pdf" %><br>
+<%= f.file_field :user_cv %>
+
+<br />
+      <br />
+
       <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
 </div>
+</div>
+<script>
+$(document).ready(function(){
+	$("#want_do_sport").hide();
+	$("input:radio[name = 'user[do_sport]']").change(function(){
+		if(this.value == 'false' & this.checked)
+		{
+			$("#want_do_sport").show();
+		}
+		else
+		{
+			$("#want_do_sport").hide();
+		}
+	});
+});
+</script>
+			
+
+
+

@@ -1,8 +1,13 @@
 <li>
   <%= gravatar_for user, size: 52 %>
   <%= link_to user.name, user %>
+  <br />
+  <% if user.user_cv.path != nil %> 
+	<%= link_to "Consulter le CV", user.user_cv.path %> 
+	<% else %> <p>CV non renseigné</p> 
+  <% end %>
   <% if current_user.admin? && !current_user?(user) %>
     | <%= link_to "delete", user, method: :delete,
-                                  data: { confirm: "You sure?" } %>
+                                  data: { confirm: "Etes vous sur?" } %>
   <% end %>
 </li>

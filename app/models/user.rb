@@ -1,3 +1,4 @@
+#encoding: utf-8
 # == Schema Information
 #
 # Table name: users
@@ -52,6 +53,48 @@ class User < ActiveRecord::Base
     
     #version allèger
     #microposts
+  end
+  
+  def IMC 
+	$imc=(user_weight/((user_height.to_f*user_height.to_f)/10000)).round(2); 
+	if $imc < 18.5 
+		return $imc.to_s + " Maigreur" 
+	elsif $imc < 25 
+		return $imc.to_s + " Bonne santé" 
+	elsif $imc <= 30 
+		return $imc.to_s + " Surpoids" 
+	elsif $imc <= 35 
+		return $imc.to_s + " Obésité" 
+	elsif $imc > 40 
+		return $imc.to_s + " Obésité sévère" 
+	else 
+		return "Erreur" 
+	end 
+  end
+  
+  def IMC_ideal
+	$imc=(ideal_weight/((user_height.to_f*user_height.to_f)/10000)).round(2); 
+	if $imc < 18.5 
+		return $imc.to_s + " Maigreur" 
+	elsif $imc < 25 
+		return $imc.to_s + " Bonne santé" 
+	elsif $imc <= 30 
+		return $imc.to_s + " Surpoids" 
+	elsif $imc <= 35 
+		return $imc.to_s + " Obésité" 
+	elsif $imc > 40 
+		return $imc.to_s + " Obésité sévère" 
+	else 
+		return "Erreur" 
+	end 
+  end
+  
+  def AGE 
+	if Date.today.month >= birthday.month && Date.today.day >= birthday.day && Date.today.year >= birthday.year 
+		return Date.today.year-birthday.year 
+	else 
+		return Date.today.year-birthday.year-1 
+	end 
   end
 
   private

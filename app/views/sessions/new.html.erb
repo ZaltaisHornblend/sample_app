@@ -1,19 +1,21 @@
 <% provide(:title, "Connexion") %>
+<div id="themeQuidditchConnecte">
 <h1>Connexion</h1>
 
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(:session, url: sessions_path) do |f| %>
 
-      <%= f.label :email %>
+      <%= f.label :email, "email" %>
       <%= f.text_field :email %>
 
-      <%= f.label :password %>
+      <%= f.label :password, "Mot de passe" %>
       <%= f.password_field :password %>
 
       <%= f.submit "Connexion", class: "btn btn-large btn-primary" %>
     <% end %>
 
-    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+    <p>Nouveau joueur ? <%= link_to "S'inscrire maintenant !", signup_path %></p>
   </div>
+</div>
 </div>

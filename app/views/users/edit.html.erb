@@ -1,4 +1,5 @@
 <% provide(:title, "Modifier utilisateur") %>
+<div id="themeQuidditchConnecte">
 <h1>Editer votre profil</h1>
 
 <div class="row">
@@ -6,16 +7,16 @@
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
-      <%= f.label :name %>
+      <%= f.label :name, "Nom" %>
       <%= f.text_field :name %>
 
-      <%= f.label :email %>
+      <%= f.label :email, "Email" %>
       <%= f.text_field :email %>
 
-      <%= f.label :password %>
+      <%= f.label :password, "Mot de passe" %>
       <%= f.password_field :password %>
 
-      <%= f.label :password_confirmation, "Confirm Password" %>
+      <%= f.label :password_confirmation, "Confirmez mot de passe" %>
       <%= f.password_field :password_confirmation %>
 
       <%= f.submit "Enregistrer", class: "btn btn-large btn-primary" %>
@@ -24,4 +25,5 @@
     <%= gravatar_for @user %>
     <a href="http://gravatar.com/emails">modifier</a>
   </div>
+</div>
 </div>

@@ -22,7 +22,7 @@ describe "Authentication" do
       it { should have_selector('div.alert.alert-error') }
       
       describe "after visiting another page" do
-        before { click_link "Home" }
+        before { click_link "Accueil" }
         it { should_not have_selector('div.alert.alert-error') }
       end
     end
@@ -32,7 +32,7 @@ describe "Authentication" do
       before { sign_in user }
 
       it { should have_title(user.name) }
-      it { should have_link('Users',       href: users_path) }
+      it { should have_link('Membres NQA',       href: users_path) }
       it { should have_link('Profil',     href: user_path(user)) }
       it { should have_link('Paramètres',    href: edit_user_path(user)) }
       it { should have_link('Déconnexion',    href: signout_path) }
@@ -53,8 +53,8 @@ describe "Authentication" do
       describe "when attempting to visit a protected page" do
         before do
           visit edit_user_path(user)
-          fill_in "Email",    with: user.email
-          fill_in "Password", with: user.password
+          fill_in "email",    with: user.email
+          fill_in "Mot de passe", with: user.password
           click_button "Connexion"
         end
 

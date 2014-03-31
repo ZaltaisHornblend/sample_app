@@ -17,8 +17,9 @@ html {
 }
 
 body {
-  padding-top: 60px;
-  background-color: purple;
+  padding-top: 80px;
+  background-image: url(../images/image_de_fond.png);
+  background-color: white;
 }
 
 section {
@@ -223,5 +224,18 @@ aside {
     height: 100px;
     margin-bottom: 5px;
   }
+}
+
+#themeQuidditch
+{
+	background-color: rgba(0, 0, 255, 0.1);
+	border-radius: 10px;
+	text-align: center;
+}
+#themeQuidditchConnecte
+{
+	background-color: rgba(0, 0, 255, 0.1);
+	border-radius: 10px;
+	/*text-align: center;*/
 }
 

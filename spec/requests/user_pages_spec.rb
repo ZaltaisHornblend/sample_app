@@ -14,8 +14,8 @@ describe "User pages" do
       visit users_path
     end
 
-    it { should have_title('All users') }
-    it { should have_content('All users') }
+    it { should have_title('Membres NQA') }
+    it { should have_content('Membres NQA') }
     
     describe "pagination" do
 
@@ -56,8 +56,8 @@ describe "User pages" do
   describe "signup page" do
     before { visit signup_path }
 
-    it { should have_content('Sign up') }
-    it { should have_title(full_title('Sign up')) }
+    it { should have_content('Inscription') }
+    it { should have_title(full_title('Inscription')) }
     
     let(:submit) { "Create my account" }
 
@@ -69,7 +69,7 @@ describe "User pages" do
       describe "after submission" do
         before { click_button submit }
 
-        it { should have_title('Sign up') }
+        it { should have_title('Inscription') }
         it { should have_content('error') }
       end
       
@@ -77,15 +77,15 @@ describe "User pages" do
 
     describe "with valid information" do
       before do
-        fill_in "Name",         with: "Example User"
-        fill_in "Email",        with: "user@example.com"
-        fill_in "Password",     with: "foobar"
+        fill_in "Nom",         with: "Example User"
+        fill_in "email",        with: "user@example.com"
+        fill_in "Mot de passe",     with: "foobar"
         fill_in "Confirmation", with: "foobar"
         select "1980", 			from: "user[birthday(1i)]"
         select "April", 		from: "user[birthday(2i)]"
         select "24", 			from: "user[birthday(3i)]"
-        fill_in "Weight",		with: 90.5
-        fill_in "Ideal Weight",	with: 78
+        fill_in "Poids",		with: 90.5
+        fill_in "Poids idéal",	with: 78
         
         #Sports
         choose "Oui, je suis sportif"
@@ -158,10 +158,10 @@ describe "User pages" do
       let(:new_name)  { "New Name" }
       let(:new_email) { "new@example.com" }
       before do
-        fill_in "Name",             with: new_name
+        fill_in "Nom",             with: new_name
         fill_in "Email",            with: new_email
-        fill_in "Password",         with: user.password
-        fill_in "Confirm Password", with: user.password
+        fill_in "Mot de passe",         with: user.password
+        fill_in "Confirmez mot de passe", with: user.password
         click_button "Enregistrer"
       end
 

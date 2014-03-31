@@ -17,11 +17,15 @@ class UsersController < ApplicationController
 	@user = User.new
   end
   
+  def listUserSport
+	@users = User.paginate(page: params[:page])
+  end
+  
   def create
     @user = User.new(user_params)    # Not the final implementation!
     if @user.save
 	  sign_in @user
-      flash[:success] = "Welcome to the Sample App!"
+      flash[:success] = "Welcome !"
       redirect_to @user
     else
       render 'new'
@@ -50,8 +54,8 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation, :birthday, :user_weight, :ideal_weight, :do_sport, :want_do_sport, 
-                                   :user_cv_file_name, :user_cv_content_type, :user_cv_file_size,
+                                   :password_confirmation, :birthday, :user_weight, :ideal_weight, :do_sport, :want_do_sport,
+                                    :user_cv, :user_cv_file_name, :user_cv_content_type, :user_cv_file_size,
                                    :user_height)
     end
     
